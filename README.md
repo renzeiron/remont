@@ -1,2 +1,2 @@
 # remont
-A site for an office renovation contractor
+A site for an office renovation contractor.
