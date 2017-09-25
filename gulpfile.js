@@ -47,9 +47,27 @@ gulp.task('browser-sync', function() {
 	});
 });
 
+gulp.task('bootstrap-min', function() {
+	return gulp.src('app/libs/bootstrap/scss/**/*.scss')
+	.pipe(sass({outputStyle: 'expanded'}).on("error", notify.onError()))
+	.pipe(rename({suffix: '.min', prefix : ''}))
+	.pipe(autoprefixer(['last 15 versions']))
+	.pipe(cleanCSS())
+	.pipe(gulp.dest('app/libs/bootstrap/css'))
+	.pipe(browserSync.reload({stream: true}));
+});
+
+gulp.task('bootstrap', ['bootstrap-min'], function() {
+	return gulp.src('app/libs/bootstrap/scss/**/*.scss')
+	.pipe(sass({outputStyle: 'expanded'}).on("error", notify.onError()))
+	.pipe(autoprefixer(['last 15 versions']))
+	.pipe(gulp.dest('app/libs/bootstrap/css'))
+	.pipe(browserSync.reload({stream: true}));
+});
+
 gulp.task('sass', function() {
 	return gulp.src('app/scss/**/*.scss')
-	.pipe(sass({outputStyle: 'expand'}).on("error", notify.onError()))
+	.pipe(sass({outputStyle: 'expanded'}).on("error", notify.onError()))
 	.pipe(rename({suffix: '.min', prefix : ''}))
 	.pipe(autoprefixer(['last 15 versions']))
 	.pipe(cleanCSS()) // Опционально, закомментировать при отладке
@@ -57,7 +75,8 @@ gulp.task('sass', function() {
 	.pipe(browserSync.reload({stream: true}));
 });
 
-gulp.task('watch', ['sass', 'js', 'browser-sync'], function() {
+gulp.task('watch', ['bootstrap-min', 'sass', 'js', 'browser-sync'], function() {
+	gulp.watch('app/libs/bootstrap/scss/**/*.scss', ['bootstrap-min']);
 	gulp.watch('app/scss/**/*.scss', ['sass']);
 	gulp.watch(['libs/**/*.js', 'app/js/common.js'], ['js']);
 	gulp.watch('app/*.html', browserSync.reload);
