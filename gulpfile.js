@@ -75,9 +75,8 @@ gulp.task('sass', function() {
 	.pipe(browserSync.reload({stream: true}));
 });
 
-gulp.task('watch', ['bootstrap-min', 'sass', 'js', 'browser-sync'], function() {
-	gulp.watch('app/libs/bootstrap/scss/**/*.scss', ['bootstrap-min']);
-	gulp.watch('app/scss/**/*.scss', ['sass']);
+gulp.task('watch', ['sass', 'js', 'browser-sync'], function() {
+	gulp.watch(['app/scss/**/*.scss', 'app/libs/bootstrap/scss/**/*.scss'], ['sass']);
 	gulp.watch(['libs/**/*.js', 'app/js/common.js'], ['js']);
 	gulp.watch('app/*.html', browserSync.reload);
 });
