@@ -16,28 +16,29 @@ var gulp           = require('gulp'),
 
 gulp.task('common-js', function() {
 	return gulp.src([
-		'app/js/common.js',
+		'src/js/common.js',
 		])
 	.pipe(concat('common.min.js'))
 	.pipe(uglify())
-	.pipe(gulp.dest('app/js'));
+	.pipe(gulp.dest('src/js'));
 });
 
 gulp.task('js', ['common-js'], function() {
 	return gulp.src([
-		'app/libs/jquery/dist/jquery.min.js',
-		'app/js/common.min.js', // Всегда в конце
+		'src/libs/jquery/dist/jquery.min.js',
+		'src/libs/bootstrap/js/bootstrap.min.js',
+		'src/js/common.min.js', // Всегда в конце
 		])
 	.pipe(concat('scripts.min.js'))
 	// .pipe(uglify()) // Минимизировать весь js (на выбор)
-	.pipe(gulp.dest('app/js'))
+	.pipe(gulp.dest('src/js'))
 	.pipe(browserSync.reload({stream: true}));
 });
 
 gulp.task('browser-sync', function() {
 	browserSync({
 		server: {
-			baseDir: 'app'
+			baseDir: 'src'
 		},
 		notify: false,
 		// tunnel: true,
@@ -46,41 +47,41 @@ gulp.task('browser-sync', function() {
 });
 
 gulp.task('bootstrap-min', function() {
-	return gulp.src('app/libs/bootstrap/scss/**/*.scss')
+	return gulp.src('src/libs/bootstrap/scss/**/*.scss')
 	.pipe(sass({outputStyle: 'expanded'}).on("error", notify.onError()))
 	.pipe(rename({suffix: '.min', prefix : ''}))
 	.pipe(autoprefixer(['last 15 versions']))
 	.pipe(cleanCSS())
-	.pipe(gulp.dest('app/libs/bootstrap/css'))
+	.pipe(gulp.dest('src/libs/bootstrap/css'))
 	.pipe(browserSync.reload({stream: true}));
 });
 
 gulp.task('bootstrap', ['bootstrap-min'], function() {
-	return gulp.src('app/libs/bootstrap/scss/**/*.scss')
+	return gulp.src('src/libs/bootstrap/scss/**/*.scss')
 	.pipe(sass({outputStyle: 'expanded'}).on("error", notify.onError()))
 	.pipe(autoprefixer(['last 15 versions']))
-	.pipe(gulp.dest('app/libs/bootstrap/css'))
+	.pipe(gulp.dest('src/libs/bootstrap/css'))
 	.pipe(browserSync.reload({stream: true}));
 });
 
 gulp.task('sass', function() {
-	return gulp.src('app/scss/**/*.scss')
+	return gulp.src('src/scss/**/*.scss')
 	.pipe(sass({outputStyle: 'expanded'}).on("error", notify.onError()))
 	.pipe(rename({suffix: '.min', prefix : ''}))
 	.pipe(autoprefixer(['last 15 versions']))
 	.pipe(cleanCSS()) // Опционально, закомментировать при отладке
-	.pipe(gulp.dest('app/css'))
+	.pipe(gulp.dest('src/css'))
 	.pipe(browserSync.reload({stream: true}));
 });
 
 gulp.task('watch', ['sass', 'js', 'browser-sync'], function() {
-	gulp.watch(['app/scss/**/*.scss', 'app/libs/bootstrap/scss/**/*.scss'], ['sass']);
-	gulp.watch(['libs/**/*.js', 'app/js/common.js'], ['js']);
-	gulp.watch('app/*.html', browserSync.reload);
+	gulp.watch(['src/scss/**/*.scss', 'src/libs/bootstrap/scss/**/*.scss'], ['sass']);
+	gulp.watch(['libs/**/*.js', 'src/js/common.js'], ['js']);
+	gulp.watch('src/*.html', browserSync.reload);
 });
 
 gulp.task('imagemin', function() {
-	return gulp.src('app/img/**/*')
+	return gulp.src('src/img/**/*')
 	.pipe(cache(imagemin()))
 	.pipe(gulp.dest('dist/img')); 
 });
@@ -88,20 +89,20 @@ gulp.task('imagemin', function() {
 gulp.task('build', ['removedist', 'imagemin', 'sass', 'js'], function() {
 
 	var buildFiles = gulp.src([
-		'app/*.html',
-		'app/.htaccess',
+		'src/*.html',
+		'src/.htaccess',
 		]).pipe(gulp.dest('dist'));
 
 	var buildCss = gulp.src([
-		'app/css/main.min.css',
+		'src/css/main.min.css',
 		]).pipe(gulp.dest('dist/css'));
 
 	var buildJs = gulp.src([
-		'app/js/scripts.min.js',
+		'src/js/scripts.min.js',
 		]).pipe(gulp.dest('dist/js'));
 
 	var buildFonts = gulp.src([
-		'app/fonts/**/*',
+		'src/fonts/**/*',
 		]).pipe(gulp.dest('dist/fonts'));
 
 });
