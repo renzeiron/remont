@@ -62,4 +62,9 @@ body {
 	height: auto;
 }
 
+#header {
+	margin-bottom: 0;
+	background-color: $gray-800;
+}
+
 @import "media" // Всегда в конце
