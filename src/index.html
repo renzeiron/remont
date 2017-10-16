@@ -28,26 +28,27 @@
 
 <body style="height:2000px">
 
-    <div class="jumbotron jumbotron-fluid" id="header">
+    <div id="header" class="jumbotron jumbotron-fluid bg-light">
         <div class="container">
 			<div class="row">
-				<div class="col-lg-8 col-sm-12">          	
-					<h1 class="display-3">Какой-то текст.</h1>
-					<p class="lead">Ремонт квартир и оффисов в Киеве.</p>
-				</div>
-				<div class="col-lg-4 col-sm-12">
-					<h1 class="display-5 float-right">322-14-88<br>322-12-34</h1>
+				<div class="col-lg-8 col-md-8 col-sm-12 d-none d-md-block">          	
+                    <div class="d-inline-block">
+                        <center>
+                            <h1 class = "logo"><b>Office Repair</b></h1>                        
+                            <span class="text-secondary" style="margin-bottom: 0px">Быстрый и качественный ремонт офисов в Киеве</span>
+                        </center>
+                    </div>
+                </div>
+				<div class="col-lg-4 col-md-4 col-sm-12 d-flex align-items-center justify-content-end">
+                    <h4 class="display-6 float-right text-secondary">(044) 360-85-38<br>(044) 240-23-83</h4>
 				</div>
 			</div>
 		</div>
     </div>
 
-    <nav class="navbar navbar-expand-md sticky-top navbar-dark bg-dark" id="navigation">
+    <nav id="navigation" class="navbar navbar-expand-md sticky-top navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand mr-auto" href="#">
-				<img src="img/favicon/apple-touch-icon.png" width="12" height="12" alt="">
-				REMONT
-			</a>
+            <a class="navbar-brand mr-auto d-md-none logo" href="#">Office Repair</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -55,16 +56,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Ссылка</a>
+                        <a class="nav-link" href="#">Услуги</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Ссылка</a>
+                        <a class="nav-link" href="#">Примеры работ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Ссылка</a>
+                        <a class="nav-link" href="#">Прайс-лист</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Ссылка</a>
+                        <a class="nav-link" href="#">Рассчет стоимости</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Оставить заявку</a>
                     </li>
                 </ul>
             </div>

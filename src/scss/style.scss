@@ -64,7 +64,13 @@ body {
 
 #header {
 	margin-bottom: 0;
-	background-color: $gray-800;
+	//background-color: $gray-800;
+}
+
+.logo {
+	font-family: $logo-font;
+	color: $gray-800;
+	margin-bottom: 0px;
 }
 
 @import "media" // Всегда в конце
