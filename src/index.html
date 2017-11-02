@@ -26,49 +26,54 @@
 
 </head>
 
-<body style="height:2000px">
+<body>
 
-    <div id="header" class="jumbotron jumbotron-fluid bg-light">
+    <div id="top" class="jumbotron jumbotron-fluid bg-light">
         <div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-md-8 col-sm-12 d-none d-md-block">          	
-                    <div class="d-inline-block">
-                        <center>
-                            <h1 class = "logo"><b>Office Repair</b></h1>                        
-                            <span class="text-secondary" style="margin-bottom: 0px">Быстрый и качественный ремонт офисов в Киеве</span>
-                        </center>
+                    <div class="d-inline-block text-center" style="line-height: 0rem">
+                            <h1 class="logo" style="margin: 0.2rem">Office Repair</h1>                    
+                            <span class="text-secondary" style="font-weight: 300; font-size: 0.9375rem">Быстрый и качественный ремонт офисов в Киеве</span>
                     </div>
                 </div>
-				<div class="col-lg-4 col-md-4 col-sm-12 d-flex align-items-center justify-content-end">
-                    <h4 class="display-6 float-right text-secondary">(044) 360-85-38<br>(044) 240-23-83</h4>
-				</div>
+				<div class="col-lg-4 col-md-4 col-sm-12 align-self-center text-left">
+                    <h5 class="text-md-right text-secondary my-auto"><i class="fa fa-phone" aria-hidden="true"></i> (044) 360-85-38</h5>
+                    <h5 class="text-md-right text-secondary my-auto"><i class="fa fa-phone" aria-hidden="true"></i> (044) 240-23-83</h5>              
+                </div>
 			</div>
 		</div>
     </div>
 
-    <nav id="navigation" class="navbar navbar-expand-md sticky-top navbar-light bg-light">
+    <nav id="navigation" class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand mr-auto d-md-none logo" href="#">Office Repair</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="d-none d-md-block">
+                <a id="navbarLogo" class="navbar-brand mr-auto logo" href="#top">Office Repair</a>
+            </div>
+            <a class="navbar-brand d-md-none mr-auto logo" href="#top">Office Repair</a>
+            <button class="navbar-toggler mr-md-3" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Услуги</a>
+                        <a class="nav-link" href="#about">О нас</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Примеры работ</a>
+                        <a class="nav-link" href="#services">Услуги</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Прайс-лист</a>
+                        <a class="nav-link" href="#showcase">Примеры работ</a>
+                    </li>
+                    <li class="nav-item  d-md-none">
+                        <a class="nav-link" href="#price">Прайс-лист</a>
+                    </li>
+                    <li class="nav-item d-none d-md-block">
+                        <a class="nav-link" href="#calculator">Расчет стоимости</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Рассчет стоимости</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Оставить заявку</a>
+                        <a class="nav-link accented-link" href="#contact">Отправить заявку</a>
                     </li>
                 </ul>
             </div>
@@ -100,6 +105,559 @@
             </div>
         </div>
     </div>
+
+    <div id ="about" class="section container" style="height: 600px">
+
+        <div class="row mb-5 justify-content-end">
+            
+            <div class="col-sm-12 col-md-10">
+                <h1>О нас</h1>
+                <span class="text-secondary mb-4">Факты о компании.</span>
+            </div>
+            
+        </div>
+
+        <div class="row justify-content-end">
+
+            <div class="d-none d-md-block col-md-2 text-center">
+                <span class="section-icon">
+                    <i class="fa fa-info" aria-hidden="true"></i>
+                </span>
+            </div>
+
+            <div class="col-sm-12 col-md-10">
+
+                <!-- About -->
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id ="services" class="section container" style="height: 600px">
+
+        <div class="row mb-5 justify-content-end">
+            
+            <div class="col-sm-12 col-md-10">
+                <h1>Услуги</h1>
+                <span class="text-secondary mb-4">Услуги компании Office Repair.</span>
+            </div>
+            
+        </div>
+
+        <div class="row justify-content-end">
+
+            <div class="d-none d-md-block col-md-2 text-center">
+                <span class="section-icon">
+                    <i class="fa fa-suitcase" aria-hidden="true"></i>
+                </span>
+            </div>
+
+            <div class="col-sm-12 col-md-10">
+
+                <!-- Services -->
+
+            </div>
+
+        </div>
+        
+    </div>
+            
+    <div id ="showcase" class="section container" style="height: 600px">
+        
+        <div class="row mb-5 justify-content-end">
+            
+            <div class="col-sm-12 col-md-10">
+                <h1>Примеры работ</h1>
+                <span class="text-secondary mb-4">Некоторые выполненые нами работы по ремонту офисов.</span>
+            </div>
+            
+        </div>
+
+        <div class="row justify-content-end">
+
+            <div class="d-none d-md-block col-md-2 text-center">
+                <span class="section-icon">
+                    <i class="fa fa-camera-retro" aria-hidden="true"></i>
+                </span>
+            </div>
+
+            <div class="col-sm-12 col-md-10">
+
+                <!-- Gallery -->
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id ="price" class="section container d-md-none" style="height: 600px">
+        <h1>Прайс-лист</h1>
+    </div>
+
+    <div id ="calculator" class="section container d-none d-md-block">
+        
+        <div class="row mb-5 justify-content-end">
+            
+            <div class="col-sm-12 col-md-10">
+                <h1>Рассчет стоимости</h1>
+                <span class="text-secondary mb-4">Воспользуйтесь онлайн-калкулятором для расчета примерной стоимости услуг.</span>
+            </div>
+            
+        </div>
+        
+        <div class="row justify-content-end">
+            
+            <div class="d-none d-md-block col-md-2 text-center">
+                <span class="section-icon">
+                    <i class="fa fa-calculator" aria-hidden="true"></i>
+                </span>
+            </div>
+            
+            <div class="col-sm-12 col-md-10">
+                <p>
+                    Нижеизложенный прайс является демонстрационным, он может варьироваться как в большую так и в меньшую сторону 
+                    в зависимости от материалов и ряда условий работы, но Мы ценим Ваше время и готовы гарантировать что работа с 
+                    нами станет Вашим максимально выгодным выбором!
+                </p>
+
+                <table id="calc-body" class="table table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col" style="width:55%">Вид работы</th>
+                            <th scope="col" style="width:15%">Ед. изм.</th>
+                            <th scope="col" style="width:15%">Кол-во</th>
+                            <th scope="col" style="width:15%">Цена</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr class="table-secondary">
+                            <td>ДЕМОНТАЖ</td>
+                            <td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>демонтаж перегородок из ГКС</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">                                   
+                                </div>
+                            </td>
+                            <td class="td-price">25</td> 
+                        </tr>
+                        <tr>
+                            <td>демонтаж кирпичных перегородок</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">                                   
+                                </div>
+                            </td>
+                            <td class="td-price">40</td>
+                        </tr>
+                        <tr>
+                            <td>разборка паркетных полов</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">                                   
+                                </div>
+                            </td>
+                            <td class="td-price">30</td>
+                        </tr>
+                        <tr>
+                            <td>снятие линолеума, ковролина</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">                                   
+                                </div>
+                            </td>
+                            <td class="td-price">10</td>
+                        </tr>
+                        <tr>
+                            <td>снятие плинтуса</td>
+                            <td>м.п.</td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">                                   
+                                </div>
+                            </td>
+                            <td class="td-price">5</td>
+                        </tr>
+                        <tr>
+                            <td>сбивка облицовочной плитки</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">                                   
+                                </div>
+                            </td>
+                            <td class="td-price">25</td>
+                        </tr>
+                        <tr>
+                            <td>снятие старых обоев</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div> 
+                            </td>
+                            <td class="td-price">10</td>
+                        </tr>
+                        <tr>
+                            <td>демонтаж дверных блоков</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">90</td>
+                        </tr>
+                        <tr>
+                            <td>демонтаж оконных блоков</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">100</td>
+                        </tr>
+                        <tr>
+                            <td>демонтаж подвесных потолков</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">25</td>
+                        </tr>
+                        <tr>
+                            <td>размывка клеевой поверхности</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">10</td>
+                        </tr>
+
+                        <tr class="table-secondary">
+                            <td>ПОТОЛКИ</td>
+                            <td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>монтаж потолков из ГКС (гипсокартон) одноуровневых</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">60</td>
+                        </tr>
+                        <tr>
+                            <td>монтаж потолков из ГКС (гипсокартон) сложных</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">100</td>
+                        </tr>
+                        <tr>
+                            <td>монтаж подвесного потолка плитами 600*600 (типа "armstrong")</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">50</td>
+                        </tr>
+                        <tr>
+                            <td>шпаклёвка потолков</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">50</td>
+                        </tr>
+                        <tr>
+                            <td>грунтовка потолков</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">10</td>
+                        </tr>
+                        <tr>
+                            <td>покраска потолков трёхкратная</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">20</td>
+                        </tr>
+                        <tr>
+                            <td>установка плинтуса потолочного (багеты)</td>
+                            <td>м.п.</td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">20</td>
+                        </tr>
+
+                        <tr class="table-secondary">
+                            <td>СТЕНЫ</td>
+                            <td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>монтаж фальшстен из ГКС (гипсокартон)</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">50</td> 
+                        </tr>
+                        <tr>
+                            <td>монтаж перегородок из ГКС (гипсокартон)</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">70</td>
+                        </tr>
+                        <tr>
+                            <td>монтаж вагонки (пластиковая, МДФ)</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">40</td>
+                        </tr>
+                        <tr>
+                            <td>укладка тепло-,звукоизоляции</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">10</td>
+                        </tr>
+                        <tr>
+                            <td>шпаклёвка стен</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">50</td>
+                        </tr>
+                        <tr>
+                            <td>грунтовка стен</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">5</td>
+                        </tr>
+                        <tr>
+                            <td>поклейка обоев</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">25</td>
+                        </tr>
+                        <tr>
+                            <td>покраска стен трёхкратная</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">25</td>
+                        </tr>
+                        <tr>
+                            <td>укладка облицовочной плитки</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">100</td>
+                        </tr>
+                    
+                        <tr class="table-secondary">
+                            <td>ПОЛЫ</td>
+                            <td></td><td></td><td></td>
+                        </tr>
+                        <tr>
+                            <td>грунтовка полов</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">50</td> 
+                        </tr>
+                        <tr>
+                            <td>устройство самовыравнивающей стяжки</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">70</td>
+                        </tr>
+                        <tr>
+                            <td>выравнивание полов плитами OSB</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">40</td>
+                        </tr>
+                        <tr>
+                            <td>укладка ламинат - пола</td>
+                            <td>м<sup>2</sup></td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">10</td>
+                        </tr>
+                        <tr>
+                            <td>укладка ковролина, линолеума</td>
+                            <td>м</td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">50</td>
+                        </tr>
+                        <tr>
+                            <td>установка плинтуса</td>
+                            <td>м.п.</td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" min="0" class="form-control td-amount" aria-label="Кол-во">
+                                </div>
+                            </td>
+                            <td class="td-price">5</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="col-6 align-self-center text-center">
+                        <span id="total" class="h5">Итого: 0 грн.</span>
+                    </div>
+                    <div class="col-6">
+                        <button id="calculate" type="button" class="btn btn-secondary btn-lg btn-block rounded-0">Рассчитать</button>
+                    </div>
+                </div>               
+            </div>
+        </div>
+    </div>
+
+    <div id ="contact" class="section container" style="height: 800px">
+        
+        <div class="row mb-5 justify-content-end">
+            
+            <div class="col-sm-12 col-md-10">
+                <h1>Отправить заявку</h1>
+                <span class="text-secondary mb-4">Вы также можете позвонить по номеру (044) 360-85-38 или (044) 240-23-83.</span>
+            </div>
+
+        </div>
+        
+        <div class="row justify-content-end">
+            
+            <div class="d-none d-md-block col-md-2 text-center">
+                <span class="section-icon">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                </span>
+            </div>
+            
+            <form class="col-sm-12 col-md-10 contact-form" action="" method="post" id="contact-form" name="contact-form" novalidate>
+                <div class="row">
+                    
+                    <div id="needs-validation" class="col-md-6 mb-3">
+                        <div class="input-group mb-3">
+                            <span class="input-group-addon rounded-0" id="sizing-addon1">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </span>
+                            <input type="text" class="form-control" aria-describedby="sizing-addon1" placeholder="ФИО" required>
+                            <span class="required" />
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-addon rounded-0" id="sizing-addon1">
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                            </span>
+                            <input type="tel" class="form-control" aria-describedby="sizing-addon1" placeholder="Телефон" required>
+                            <span class="required" />
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-addon rounded-0 text-center" id="sizing-addon1">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            </span>
+                            <input type="email" class="form-control" aria-describedby="sizing-addon1" placeholder="E-mail" required>
+                            <span class="required" />
+                        </div>
+                        <span><small>Поля отмеченные * обязательны для заполнения.</small></span>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <textarea name="" id="" cols="80" rows="8" class="form-control rounded-0" placeholder="Дополнительная информация" style="resize: none;"></textarea>                            
+                        </div>
+                        <button type="submit" id="submit-form" class="btn btn-secondary btn-lg btn-block rounded-0">Отправить</button>
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
 
     <link rel="stylesheet" href="css/style.min.css">
     <script src="js/scripts.min.js"></script>

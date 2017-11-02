@@ -26,8 +26,8 @@ gulp.task('common-js', function() {
 gulp.task('js', ['common-js'], function() {
 	return gulp.src([
 		'src/libs/jquery/dist/jquery.min.js',
+		'src/js/common.min.js',
 		'src/libs/bootstrap/js/bootstrap.min.js',
-		'src/js/common.min.js', // Всегда в конце
 		])
 	.pipe(concat('scripts.min.js'))
 	// .pipe(uglify()) // Минимизировать весь js (на выбор)
@@ -75,7 +75,8 @@ gulp.task('sass', function() {
 });
 
 gulp.task('watch', ['sass', 'js', 'browser-sync'], function() {
-	gulp.watch(['src/scss/**/*.scss', 'src/libs/bootstrap/scss/**/*.scss'], ['sass']);
+	gulp.watch([
+		'src/scss/**/*.scss', 'src/libs/bootstrap/scss/**/*.scss', 'src/libs/font-awesome/scss/**/*.scss'], ['sass']);
 	gulp.watch(['libs/**/*.js', 'src/js/common.js'], ['js']);
 	gulp.watch('src/*.html', browserSync.reload);
 });

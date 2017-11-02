@@ -42,18 +42,44 @@ body textarea:required:valid {
 	color: #666;
 }
 
-html, body {
-	height: 100%;
-}
+// html, body {
+// 	height: 100%;
+// }
 
 body {
-	font-size: 16px;
-	min-width: 320px;
+	// min-width: 320px;
 	position: relative;
-	line-height: 1.65;
+	height: 100%;
+	// line-height: 1.65;
+	font-size: 1rem;
 	font-family: $default-font;
 	overflow-x: hidden;
+	overflow-y: auto;
 	opacity: 1;
+}
+
+.section {
+	padding-top: 5rem; 
+
+	p, span {
+		font-weight: 300;
+	}
+
+	h1 {
+		font-family: open-sans;
+		font-size: 1.5rem;
+	}
+}
+
+.section-icon {
+	font-size: 5rem;
+	line-height: 0;
+	color: $gray-400;
+}
+
+.input-group-addon {
+	min-width: 2.5rem;
+	text-align: left;
 }
 
 .img-responsive {
@@ -62,15 +88,63 @@ body {
 	height: auto;
 }
 
-#header {
+// .nav-item {
+// 	a:active {
+// 		transform: translateY(1px);
+// 	}
+// }
+
+#top {
 	margin-bottom: 0;
+	padding-bottom: 1rem;
 	//background-color: $gray-800;
 }
 
 .logo {
 	font-family: $logo-font;
-	color: $gray-800;
-	margin-bottom: 0px;
+	font-weight: bold;
+	//font-style: italic;
+	//color: $gray-700;
 }
 
-@import "media" // Всегда в конце
+#navbarLogo {
+	display: none;
+	font-size: 1.2rem
+}
+
+.table {
+	thead {
+		tr {
+			th {
+				vertical-align: middle;
+			}
+		}
+	}
+
+	tbody {
+		tr {
+			td {
+				vertical-align: middle;
+			}
+		} 
+	} 
+}
+
+.required:after {
+	content:" *";
+	position: absolute; 
+	margin: 0rem 0rem 0rem -0.625rem;
+	z-index: 10;
+}
+
+.contact-form {
+	input:focus:invalid {
+		border-color: $form-feedback-invalid-color;
+	}
+
+	input:required:valid {
+		border-color: $form-feedback-valid-color;
+	}
+}
+
+@import "media"
