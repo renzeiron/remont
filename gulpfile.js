@@ -12,7 +12,8 @@ var gulp           = require('gulp'),
 		autoprefixer   = require('gulp-autoprefixer'),
 		ftp            = require('vinyl-ftp'),
 		notify         = require("gulp-notify"),
-		rsync          = require('gulp-rsync');
+		rsync          = require('gulp-rsync'),
+		mergeStream    = require('merge-stream');
 
 gulp.task('common-js', function() {
 	return gulp.src([
@@ -26,8 +27,11 @@ gulp.task('common-js', function() {
 gulp.task('js', ['common-js'], function() {
 	return gulp.src([
 		'src/libs/jquery/dist/jquery.min.js',
+		'src/js/common.min.js',
+		// 'src/libs/lightbox2/dist/js/lightbox.min.js',
+		'src/libs/popper.js/dist/umd/popper.min.js',
 		'src/libs/bootstrap/js/bootstrap.min.js',
-		'src/js/common.min.js', // Всегда в конце
+		'src/libs/fancybox/dist/jquery.fancybox.min.js'
 		])
 	.pipe(concat('scripts.min.js'))
 	// .pipe(uglify()) // Минимизировать весь js (на выбор)
@@ -37,36 +41,43 @@ gulp.task('js', ['common-js'], function() {
 
 gulp.task('browser-sync', function() {
 	browserSync({
-		server: {
-			baseDir: 'src'
-		},
-		notify: false,
+		// server: {
+		// 	baseDir: 'src'
+		// },
+
+		proxy: 'localhost/remont',
+		host: 'localhost',
+		port: 80,
+  		open: 'local',
+		
+		notify: false
+
 		// tunnel: true,
 		// tunnel: "projectmane", //Demonstration page: http://projectmane.localtunnel.me
 	});
 });
 
-gulp.task('bootstrap-min', function() {
-	return gulp.src('src/libs/bootstrap/scss/**/*.scss')
-	.pipe(sass({outputStyle: 'expanded'}).on("error", notify.onError()))
-	.pipe(rename({suffix: '.min', prefix : ''}))
-	.pipe(autoprefixer(['last 15 versions']))
-	.pipe(cleanCSS())
-	.pipe(gulp.dest('src/libs/bootstrap/css'))
-	.pipe(browserSync.reload({stream: true}));
-});
+// gulp.task('bootstrap-min', function() {
+// 	return gulp.src('src/libs/bootstrap/scss/**/*.scss')
+// 	.pipe(sass({outputStyle: 'expanded'}).on("error", notify.onError()))
+// 	.pipe(rename({suffix: '.min', prefix : ''}))
+// 	.pipe(autoprefixer(['last 15 versions']))
+// 	.pipe(cleanCSS())
+// 	.pipe(gulp.dest('src/libs/bootstrap/css'))
+// 	.pipe(browserSync.reload({stream: true}));
+// });
 
-gulp.task('bootstrap', ['bootstrap-min'], function() {
-	return gulp.src('src/libs/bootstrap/scss/**/*.scss')
-	.pipe(sass({outputStyle: 'expanded'}).on("error", notify.onError()))
-	.pipe(autoprefixer(['last 15 versions']))
-	.pipe(gulp.dest('src/libs/bootstrap/css'))
-	.pipe(browserSync.reload({stream: true}));
-});
+// gulp.task('bootstrap', ['bootstrap-min'], function() {
+// 	return gulp.src('src/libs/bootstrap/scss/**/*.scss')
+// 	.pipe(sass({outputStyle: 'expanded'}).on("error", notify.onError()))
+// 	.pipe(autoprefixer(['last 15 versions']))
+// 	.pipe(gulp.dest('src/libs/bootstrap/css'))
+// 	.pipe(browserSync.reload({stream: true}));
+// });
 
 gulp.task('sass', function() {
 	return gulp.src('src/scss/**/*.scss')
-	.pipe(sass({outputStyle: 'expanded'}).on("error", notify.onError()))
+	.pipe(sass({outputStyle: 'expanded'}).on('error', notify.onError()))
 	.pipe(rename({suffix: '.min', prefix : ''}))
 	.pipe(autoprefixer(['last 15 versions']))
 	.pipe(cleanCSS()) // Опционально, закомментировать при отладке
@@ -75,15 +86,40 @@ gulp.task('sass', function() {
 });
 
 gulp.task('watch', ['sass', 'js', 'browser-sync'], function() {
-	gulp.watch(['src/scss/**/*.scss', 'src/libs/bootstrap/scss/**/*.scss'], ['sass']);
-	gulp.watch(['libs/**/*.js', 'src/js/common.js'], ['js']);
-	gulp.watch('src/*.html', browserSync.reload);
+	gulp.watch([
+		'src/scss/**/*.scss', 'src/libs/bootstrap/scss/**/*.scss', 'src/libs/font-awesome/scss/**/*.scss'], ['sass']);
+	gulp.watch(['src/libs/**/*.js', 'src/js/common.js'], ['js']);
+	gulp.watch(['src/*.html', 'src/libs/**/*.php', 'src/*.php'], browserSync.reload);
 });
 
+// gulp.task('imagemin', function() {
+// 	return gulp.src('src/img/**/*')
+// 	.pipe(cache(imagemin()))
+// 	.pipe(gulp.dest('dist/img')); 
+// });
+
 gulp.task('imagemin', function() {
-	return gulp.src('src/img/**/*')
+	// return merge(
+	// 	gulp.src('src/img/carousel/*')
+	// 	.pipe(cache(imagemin()))
+	// 	.pipe(gulp.dest('src/img/carousel')),
+	// 	gulp.src('src/img/examples/1/*')
+	// 	.pipe(cache(imagemin()))
+	// 	.pipe(gulp.dest('src/img/examples/1')),
+	// 	gulp.src('src/img/examples/2/*')
+	// 	.pipe(cache(imagemin()))
+	// 	.pipe(gulp.dest('src/img/examples/2')),
+	// 	gulp.src('src/img/examples/3/*')
+	// 	.pipe(cache(imagemin()))
+	// 	.pipe(gulp.dest('src/img/examples/3')),
+	// 	gulp.src('src/img/services/*')
+	// 	.pipe(cache(imagemin()))
+	// 	.pipe(gulp.dest('src/img/services'))
+	// );
+
+	return gulp.src('src/img/services/*')
 	.pipe(cache(imagemin()))
-	.pipe(gulp.dest('dist/img')); 
+	.pipe(gulp.dest('src/img/services'))
 });
 
 gulp.task('build', ['removedist', 'imagemin', 'sass', 'js'], function() {
@@ -104,7 +140,6 @@ gulp.task('build', ['removedist', 'imagemin', 'sass', 'js'], function() {
 	var buildFonts = gulp.src([
 		'src/fonts/**/*',
 		]).pipe(gulp.dest('dist/fonts'));
-
 });
 
 gulp.task('deploy', function() {

@@ -1,5 +1,19 @@
-$default-font: "roboto-example", sans-serif;
+//$enable-rounded: false;
+
+$default-font: "roboto", sans-serif;
 $logo-font: "syncopate", sans-serif;
 
-$accent-color: #978061;
+$jumbotron-padding: 1rem;
 
+$fa-font-path: "../fonts/FontAwesome/";
+
+$bittersweet: #F27461;
+$coral: #f17e6d;
+$independence: #3F556B;
+$gunmetal: #283744;
+$gray-blue: #8593A6;
+//$platinum: #E1E5EA;
+$glitter: #E6E9ED;
+
+$navbar-light-hover-color: rgba($bittersweet,.75);
+$navbar-light-active-color: $bittersweet;
