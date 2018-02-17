@@ -1,3 +1,6 @@
+var fileStorage = [],
+	totalSize = 0;
+
 $(document).ready(function() {
 
 	$('[data-fancybox]').fancybox({
@@ -36,7 +39,7 @@ $(document).ready(function() {
 
 	$('a').click(function(e) {
 		$(this).blur();
-		e.preventDefault();
+		//e.preventDefault();
 	});
 
 	$('#calculate').click(function() {
@@ -85,45 +88,90 @@ $(document).ready(function() {
       	});
 	});
 
+	function formatFileSize(bytes) {
+        if (typeof bytes !== 'number') {
+            return '';
+        }
+
+        if (bytes >= 1048576) {
+            return (bytes / 1048576).toFixed(2) + ' Мб';
+        }
+
+        return (bytes / 1024).toFixed(2) + ' Кб';
+	}	
+	
+	function fileAlreadyLoaded(fileName) {
+		var loaded = false;
+
+		if (fileStorage.length > 0) {
+			for (var j = 0; j < fileStorage.length; j++) {
+				if (fileStorage[j].name === fileName)
+					loaded = true;	
+			}	
+		}
+
+		return loaded;
+	}
+
 	$('.custom-file-input').each(function() {
 		var input = $(this),
 			label = input.next('label'),
-			labelText = label.html();
+			labelText = label.html(),
+			validExtensions = ['jpg', 'png', 'gif', 'doc', 'xls', 'docx', 'xlsx', 'pdf', 'zip', 'rar', '7z'],
+			ul = $('#contact-form ul'),
+			message = $('#upload-message');
 
-		var validExtensions = ['jpg', 'png', 'gif', 'doc', 'xls', 'docx', 'xlsx', 'pdf', 'zip', 'rar', '7z'];
+		input.on('click', function() {
+			message.html('Макс. допустимый общий размер файлов - 25 Мб.');
+		});
 
 		input.on('change', function() {
-			$('#upload-message').html('Макс. допустимый общий размер файлов - 25 Мб.');
-			var fileName;
-			var totalSize = 0;
-			var filesValid = true;
-
-			if (this.files) {
+			if (this.files.length > 0) {
 				for (var i = 0; i < this.files.length; i++) {
-					totalSize += this.files[i].size;
-					
-					if (totalSize > 26214400) {
-						$('#upload-message').html('Превышен макс. допустимый размер файлов!');
-						filesValid = false;
-						break;
-					}
+					var tpl = $('<li><p></p><p class="file-name"></p><span class="file-remove"><i class="fa fa-times"></i></span></li>');
 
-					if ($.inArray(this.files[i].name.substr(this.files[i].name.lastIndexOf('.') + 1), validExtensions) == -1) {
-						$('#upload-message').html('Выбранный формат не поддерживается!');
-						filesValid = false;
+					if (totalSize + this.files[i].size > 26214400) {
+						message.html('Превышен макс. допустимый размер файлов!');
+						break;
+					} else if ($.inArray(this.files[i].name.substr(this.files[i].name.lastIndexOf('.') + 1), validExtensions) == -1) {
+						message.html('Выбранный формат не поддерживается!');
+						continue;
+					} else if (fileAlreadyLoaded(this.files[i].name)) {
+						message.html('Вы пытаетесь загрузить файл дважды!');
+						continue;
+					} else {
+						$('#attachments-list').css('display', 'block');
+						fileStorage.push(this.files[i]);
+						totalSize += this.files[i].size;
+						tpl.find('.file-name').text(this.files[i].name);
+						tpl.find('p').first().text(this.files[i].name).append(' <i>(' + formatFileSize(this.files[i].size) + ')</i>');
+						tpl.appendTo(ul).hide().fadeIn('normal');
 					}
 				}
-	
-				if(this.files.length > 1)
-					fileName = '<i class="fa fa-paperclip" aria-hidden="true"></i> ' + (this.getAttribute('data-multiple-caption') || '').replace('{count}', this.files.length);
-				else if(this.files[0])
-					fileName = '<i class="fa fa-paperclip" aria-hidden="true"></i> ' + this.files[0].name;
-			}
 
-			if(fileName && filesValid)
-				label.find('center').html(fileName);
-			else
-				label.find('center').html(labelText);
+				$(this).wrap('<form></form>').closest('form').get(0).reset();
+				$(this).unwrap();
+				$(this).val('');
+			}
+		});
+	});
+
+	$('#attachments-list').on('click', '.file-remove', function() {
+		var fileName = $(this).parent().find('.file-name').text(),
+			fileList = $(this).closest('div');
+
+
+		for (var i = 0; i < fileStorage.length; i++) {
+			if (fileStorage[i].name == fileName) {
+				totalSize -= fileStorage[i].size;
+				fileStorage.splice(fileStorage.indexOf(fileStorage[i]), 1);
+			}		
+		}
+
+		$(this).parent().fadeOut('normal', function() { 
+			$(this).remove();
+			if (fileList.find('ul li').length == 0)
+			fileList.css('display', 'none');
 		});
 	});
 
@@ -200,10 +248,21 @@ function instantValidation(field) {
 			//event.stopPropagation();
 
 			if (form.checkValidity() === true) {
+				var formData = new FormData($(form)[0]);
+				//console.log(fileStorage);
+
+				if (fileStorage.length > 0) {
+					formData.delete('attachments[]');
+					for (i = 0; i < fileStorage.length; i++) {
+						formData.append('attachments[]', fileStorage[i]);
+					}
+				}
+
 				$.ajax({
 					type: 'POST',
 					url: 'process.php',
-					data: new FormData($(form)[0]),
+					data: formData,
+					// data: new FormData($(form)[0]),
 					//dataType: 'JSON',
 					cache: false,
     				contentType: false,
@@ -214,10 +273,13 @@ function instantValidation(field) {
 					success: function(response) {
 						$('#form-response .modal-body').html('<center>' + response + '</center>');
 						$('#form-response').modal('show');
-						$('#contact-form input, textarea').val('');
+						form.reset();
+						fileStorage = [];
+						$('#attachments-list').css('display','none').find('ul li').remove();
+						$('#contact-form label center').html('<i class="fa fa-paperclip" aria-hidden="true"></i> Прикрепить файлы');
 						$('#submit-form').html('Отправить');
 						
-						console.log(response); // Тут следовало бы писать сообщения об ошибках.
+						console.log(response); // for debug purposes
 					}					
 				});
 			} else {

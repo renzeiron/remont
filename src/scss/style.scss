@@ -166,6 +166,15 @@ button:focus, button:active {
 	padding-bottom: 1rem;
 	background: $glitter;
 
+	a {
+		color: rgba($independence, .9);
+	}
+
+	a:hover, a:focus {
+		text-decoration: none;
+		color: rgba($independence, 1);
+	}
+
 	h1 {
 		padding: 0;
 		margin: 0.2rem;
@@ -173,6 +182,7 @@ button:focus, button:active {
 	}
 	
 	h5 {
+		font-size: 0.875rem;
 		font-family: open-sans;
 		color: $independence;
 	}
@@ -194,7 +204,7 @@ button:focus, button:active {
 	background: $glitter;
 
 	.nav-item {
-		font-family: open-sans;
+		font-family: open-sans, sans-serif;
 		font-weight: 600;
 	}
 
@@ -334,6 +344,7 @@ button:focus, button:active {
 		
 		.card-header {
 			border-bottom: none;
+			cursor: pointer;
 		}
 
 		.card-body {
@@ -390,7 +401,7 @@ button:focus, button:active {
 	padding-bottom: 4rem;
 
 	.section-icon {
-		color: darken($gray-blue, 3)
+		color: darken($gray-blue, 3);
 		//color: $gray-blue;
 		//color: rgba($gray-blue, .5);
 	}
@@ -435,6 +446,7 @@ button:focus, button:active {
 			// border-radius: 0.3125rem;
 			border-radius: 0.25rem;
 			width: 50%;
+			margin: 0;
 			padding: 0.0125rem 1rem;
 			display: inline-block;
 			cursor: pointer;
@@ -451,6 +463,59 @@ button:focus, button:active {
 	.custom-file-input:focus + label, .custom-file-input:hover + label, .custom-file-input.has-focus + label {
 		//background: $bittersweet;
 		background: darken(rgb(233, 236, 239), 10);
+	}
+
+	#attachments-list {
+		border: 1px dashed $bittersweet;
+		border-radius: 0.3125rem;
+		display: none;
+
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0;
+			width: 100%;
+
+			li {
+				width: 100%;
+				color: darken($gunmetal, 5);
+
+				p {
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					overflow: hidden;
+					vertical-align: top;
+					font-weight: bold;
+					//background: yellow;
+					display: inline-block;
+					width: 95%;
+					padding-left: 0.3125rem;
+					margin: 0;
+
+					i {
+						font-weight: normal;
+						color: #19222B;
+					}
+				}
+
+				.file-name {
+					display: none;
+				}
+
+				span {
+					cursor: pointer;
+					display: inline-block;
+					width: 5%;
+					text-align: center;
+					margin: 0;
+					color: $gunmetal;
+				}
+
+				span:hover {
+					color: darken($form-feedback-invalid-color, 10);
+				}
+			}
+		}
 	}
 
 	.modal {
@@ -497,6 +562,7 @@ button:focus, button:active {
 	ul {
 		list-style-type: none;
 		padding-left: 0;
+		color: rgba(255,255,255,.75);
 	}
 
 	a {

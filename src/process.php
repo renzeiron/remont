@@ -77,23 +77,24 @@
         $emailTextHTML .= '<br>тел. ' . $phone;
         $emailTextHTML .= '<br>email ' . $email;
         $attachments = process_files_array($_FILES)['attachments'];
-        //print_r($files);
+        print_r($_FILES);
 
         $mail = new PHPMailer(true);
         $mail->CharSet = 'UTF-8';
 
         try {
-            $mail->SMTPDebug = 2;
+            $mail->SMTPDebug = 0;
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
-            $mail->SMTPAuth = true;
-            $mail->Username = 'master.officerepair@gmail.com';
-            $mail->Password = 'DolboebBrateeshka2008';
-            $mail->SMTPSecure = 'tls';
-            $mail->Port = 587; 
 
-            $mail->setFrom('master.officerepair@gmail.com', $name);
-            $mail->addAddress('poisonconsumed@gmail.com');
+            $mail->Host = 'robots.1gb.ua';
+            $mail->SMTPAuth = false;
+            //$mail->SMTPSecure = 'tls';
+            //$mail->Port = 587;
+            //$mail->Port = 465;
+            $mail->Port = 25;
+
+            $mail->setFrom('mail@officerepair.com.ua', $name);
+            $mail->addAddress('remontofisa@gmail.com');
             $mail->addReplyTo($email, $name);
 
             $mail->isHTML(true);
@@ -101,7 +102,6 @@
             $mail->Body = $emailTextHTML;
             //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
-            // Вложения отправляются при условии, что они ВСЕ прошли проверку.
             if (attachments_validation($attachments)) {
                 foreach($attachments as $file => $attributes) {
                     $uploadfile = tempnam(sys_get_temp_dir(), hash('sha256', $attributes['name']));

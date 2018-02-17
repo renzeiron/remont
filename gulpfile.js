@@ -27,6 +27,9 @@ gulp.task('common-js', function() {
 gulp.task('js', ['common-js'], function() {
 	return gulp.src([
 		'src/libs/jquery/dist/jquery.min.js',
+		// 'src/libs/fileupload/jquery.ui.widget.js',
+		// 'src/libs/fileupload/jquery.iframe-transport.js',
+		// 'src/libs/fileupload/jquery.fileupload.js',
 		'src/js/common.min.js',
 		// 'src/libs/lightbox2/dist/js/lightbox.min.js',
 		'src/libs/popper.js/dist/umd/popper.min.js',
